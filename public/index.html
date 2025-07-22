@@ -1,1 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>gensokyo transferer</title>
+    </head>
 
+    <body>
+        <form class="upload" enctype="multipart/form-data" method="POST">
+            <label for="choose" class="choose-label">choose</label>
+            <input type="file" id="choose" multiple required />
+            <button type="submit">upload</button>
+        </form>
+
+        <div class="files"></div>
+        <div class="list"></div>
+
+        <script src="script.js"></script>
+    </body>
+</html>

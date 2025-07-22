@@ -12,3 +12,8 @@ A simple app to transfer files from your phone to your pc
 3. go into the folder downloaded
 4. run `node server.js` to start the server
 5. now you can go to the address outputted and transfer your files
+
+## Deleting files securely
+you can goto `/shred/<file name>` to delete a file
+
+e.g. you have a file in `/_uploaded` called `balls.png`, you can delete it securely by going to `http://<your ip>:<port>/shred/balls.png`

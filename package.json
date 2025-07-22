@@ -1,0 +1,12 @@
+{
+  "name": "gensokyo",
+  "version": "1.0.0",
+  "description": "simple file transfer tool",
+  "author": "femrawr",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "express": "^5.1.0",
+    "formidable": "^3.5.4"
+  }
+}

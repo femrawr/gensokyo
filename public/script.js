@@ -58,7 +58,7 @@ const update = () => {
             content.appendChild(preview);
         }
 
-        const name = document.createElement('span');
+        const name = document.createElement('a');
         name.textContent = file.name;
         content.appendChild(name);
 
@@ -92,9 +92,13 @@ const get = async () => {
             cntr.appendChild(img);
         }
 
-        const name = document.createElement('span');
+        const name = document.createElement('a');
         name.className = 'file-name';
         name.textContent = file;
+        name.href = '/uploads/' + file;
+        name.download = file;
+        name.style.color = '#ffffffff';
+        name.style.textDecoration = 'none';
 
         cntr.appendChild(name);
         list.appendChild(cntr);

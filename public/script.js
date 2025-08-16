@@ -135,7 +135,7 @@ choose.addEventListener('change', (e) => {
 
 upload.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     if (uploaded.length === 0)
         return;
 

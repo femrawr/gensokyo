@@ -52,9 +52,10 @@ app.post('/upload', (req, res) => {
 
                 const fullName = file.originalFilename || 'file';
 
-                const extension = path.extname(fullName);
-                const name = path.basename(fullName, extension);
-                const newName = `${name}_${Date.now()}${extension}`;
+                const cleanName = fullName.replace(/\.enc$/, '');
+                const extension = path.extname(cleanName);
+                const name = path.basename(cleanName, extension);
+                const newName = `${name}_${Date.now()}${extension}.enc`;
 
                 fs.copyFileSync(
                     file.filepath,
@@ -97,16 +98,29 @@ app.get('/files', (_, res) => {
     });
 });
 
-app.get('/shred/:filename', async (req, res) => {
+app.get('/download/:filename', (req, res) => {
     try {
         const file = req.params.filename;
+        const filePath = path.join(uploadDir, file);
 
-        if (file.includes('..') || file.includes('/') || file.includes('\\')) {
-            return res.status(400).json({
-                message: 'invalid file'
+        if (!fs.existsSync(filePath)) {
+            return res.status(404).json({
+                message: 'failed to find file'
             });
         }
 
+        res.sendFile(filePath);
+    } catch (e) {
+        console.warn('failed to serve file:', e.message);
+        res.status(500).json({
+            message: 'failed to serve file'
+        });
+    }
+});
+
+app.get('/shred/:filename', async (req, res) => {
+    try {
+        const file = req.params.filename;
         const filePath = path.join(uploadDir, file);
 
         if (!fs.existsSync(filePath)) {
@@ -116,13 +130,13 @@ app.get('/shred/:filename', async (req, res) => {
         }
 
         await shred(filePath);
-        
+
         console.log('shredded:', file);
         res.status(200).json({
             message: 'file successfully shredded',
             data: file
         });
-        
+
     } catch (e) {
         console.warn('failed to shred file:', e.message);
         res.status(500).json({

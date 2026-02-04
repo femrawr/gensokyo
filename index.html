@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>gensokyo file transfer</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="content-container">
+                <div class="header">
+                    <div class="header-buttons">
+                        <input class="file-input" type="file" multiple>
+                        <button class="header-button add-files">Add Files</button>
+                        <button class="header-button upload-files" disabled>Upload Files</button>
+                    </div>
+                </div>
+
+                <div class="content queue-content">
+                    <div class="empty">No files in queue.</div>
+                </div>
+            </div>
+
+            <div class="content-container" style="border-right: 1px solid #2a2a2a;">
+                <div class="header"></div>
+                <div class="content" id="uploadedContent">
+                    <div class="empty">No uploaded files.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="upload-overlay hidden">
+            <div class="upload-overlay-container">
+                <div class="upload-files-list"></div>
+
+                <div class="upload-files-password">
+                    <label>Enter password</label>
+                    <input type="password" class="password">
+                </div>
+
+                <div class="upload-files-actions">
+                    <div class="upload-panel-toggle">
+                        <input type="checkbox" class="encrypt-names">
+                        <label>Encrypt file names</label>
+                    </div>
+
+                    <div class="upload-panel-buttons">
+                        <button class="upload-button cancel" style="background: #3a3a3a; color: #e0e0e0;">Cancel</button>
+                        <button class="upload-button confirm">Upload</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script src="js-argon2.js"></script>
+    <script src="js-main.js"></script>
+</html>
